@@ -1,6 +1,6 @@
 // width & height of canvas
-const width = 550;
-const height = 552;
+const width = 512;
+const height = 512;
 
 /* interessant à voir, filtres et layers
 https://idmnyu.github.io/p5.js-image/Advanced/index.html
@@ -68,7 +68,7 @@ function preload() {
   img = loadImage("lena.png");
   classifier = ml5.imageClassifier("MobileNet");
   //classifier = ml5.imageClassifier('DoodleNet');
-  data = loadJSON("assets/data.json");
+  // data = loadJSON("assets/data.json");
 }
 
 function setup() {
@@ -91,45 +91,6 @@ function newTheory() {
   drawPlan();
   analyse();
   check_similitudes();
-}
-
-// When the image has been loaded,
-// get a prediction for that image
-function imageReady(img) {
-  image(img, 0, 0);
-  classifier.classify(img, gotResult);
-}
-
-function savePredictions() {
-  predictionsJSON = {
-    predictions: predictions,
-  };
-  saveJSON(predictionsJSON, "predictions.json");
-}
-
-// When we get the results
-function gotResult(err, results) {
-  // If there is an error, show in the console
-  if (err) {
-    console.error(err);
-  }
-
-  //information = {
-  //name: allImages[currentIndex],
-  // result: results
-  //};
-
-  //predictions.push(information);
-  createDiv("Label: " + results[0].label);
-  createDiv("Confidence: " + nf(results[0].confidence, 0, 2));
-  //currentIndex++;
-  // if (currentIndex <= allImages.length - 1) {
-  //  loadImage(allImages[currentIndex], imageReady);
-  //} else {
-  //  savePredictions();
-  // }
-  console.info("PREDICTIONS", results);
- reload()
 }
 
 function draw() {
@@ -350,8 +311,10 @@ function analyse_square() {
 }
 
 function mouseClicked() {
-  focus = { x: mouseX, y: mouseY };
-  reload();
+  if (mouseX > 0 && mouseY > 0 && mouseX < img.width && mouseY < img.height) {
+    focus = { x: mouseX, y: mouseY };
+    reload();
+  }
 }
 
 function drawPlan() {
@@ -428,6 +391,6 @@ function prepareImg() {
     img.resize(0, height);
   }
   focus = { x: img.width / 2, y: img.height / 2 };
-  imageReady(img)
- // reload();
+  imageReady(img);
+  // reload();
 }
