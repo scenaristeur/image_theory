@@ -190,6 +190,7 @@ function analyse() {
   focus_hash = new Minhash();
   // we lsh the color of the point
   focus.col.map(function (w) {
+    console.log("focus_w", w);
     focus_hash.update(w);
   });
   //focus_hash_id = 'focus_'+focus.x+'_'+focus.y
@@ -320,6 +321,7 @@ function match_focus_point() {
     m2.update(w);
   });
   s3.map(function (w) {
+    console.log("s3 map", w)
     m3.update(w);
   });
   // add each document to a Locality Sensitive Hashing index
@@ -358,9 +360,10 @@ function push_point(p) {
 }
 function lsh_point(p) {
   let m = new Minhash();
-  console.log("m empty", m);
+  //console.log("m empty", m);
   // we lsh the color of the point
   p.col.map(function (w) {
+    console.log("point_w ", p.x, p.y, w);
     m.update(w);
   });
   let point_id = p.x + "_" + p.y;
@@ -376,7 +379,7 @@ function analyse_square() {
 function mouseClicked() {
   focus = { x: mouseX, y: mouseY };
   reload();
-  analyse()
+  analyse();
 }
 
 function drawPlan() {
