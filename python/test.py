@@ -6,7 +6,7 @@ import thoe
 options = {
     "path": "../images/leave3-300x224.jpg",
     "focus": {"x":10,"y":10},
-    "nb_points": 6,
+    "nb_points": 20000,
     "method": "hazard", # "hazard", 
     "window": {"x":100, "y":100 }, # nb points to analyse at each step
     "step": 10,
