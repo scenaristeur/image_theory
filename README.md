@@ -1,5 +1,14 @@
+# p5js 
+`npx http-serve`
 
-npx http-serve
+
+# python
+```
+cd python
+python test.py
+```
+
+
 
 https://stackblitz.com/edit/react-ts-ut9iyb?file=App.tsx
 
